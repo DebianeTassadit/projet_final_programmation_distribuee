@@ -8,5 +8,5 @@ jobs:
         uses: actions/checkout@v2
       - name: Build Docker Images
         run: |
-          docker build -t debia/car-service:latest backend/car-service/
-          docker push debia/car-service:latest
+          docker build -t eudemonia01/car-service:latest backend/car-service/
+          docker push eudemonia01/car-service:latest
