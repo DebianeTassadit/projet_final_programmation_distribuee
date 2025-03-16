@@ -1,9 +1,9 @@
-# 🚗 Car Rental Project
+# Car Rental Project
 
-## 📌 Objectif
+## Objectif
 Développer une plateforme de location de voitures basée sur des microservices.
 
-## ⚙️ Technologies Utilisées
+## Technologies Utilisées
 - **Backend** : Spring Boot (Java) / Node.js
 - **Base de données** : PostgreSQL / MySQL
 - **Containerisation** : Docker, Kubernetes
