@@ -1,0 +1,33 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: car-service-gateway
+spec:
+  selector:
+    istio: ingressgateway # Istio Gateway par défaut
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: car-service
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - car-service-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /cars
+      route:
+        - destination:
+            host: car-service.default.svc.cluster.local
+            port:
+              number: 8081

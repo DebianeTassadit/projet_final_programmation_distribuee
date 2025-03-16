@@ -1,0 +1,12 @@
+name: CI/CD
+on: push
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build Docker Images
+        run: |
+          docker build -t debia/car-service:latest backend/car-service/
+          docker push debia/car-service:latest

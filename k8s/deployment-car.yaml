@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: car-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: car-service
+  template:
+    metadata:
+      labels:
+        app: car-service
+    spec:
+      containers:
+        - name: car-service
+          image: eudemonia01/car-service:v1  
+          ports:
+            - containerPort: 8081
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://postgres-db:5432/carrental"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "admin"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "admin"
+            - name: SPRING_JPA_DATABASE_PLATFORM
+              value: "org.hibernate.dialect.PostgreSQLDialect"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: car-service
+spec:
+  selector:
+    app: car-service
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+  type: ClusterIP
+

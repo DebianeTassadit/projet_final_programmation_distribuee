@@ -1,0 +1,12 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: postgres-external
+spec:
+  hosts:
+  - "postgres-db.default.svc.cluster.local"
+  ports:
+  - number: 5432
+    name: tcp
+    protocol: TCP
+  location: MESH_INTERNAL
